@@ -1,0 +1,25 @@
+<resources>
+<!--    button text-->
+    <string name="app_name">Rove</string>
+    <string name="cancel">Cancel</string>
+    <string name="go">Go</string>
+    <string name="location_one">Location #1</string>
+    <string name="location_two">Location #2</string>
+    <string name="done">Done</string>
+
+<!--    message text-->
+    <string name="location_pending">Finding your location</string>
+    <string name="location_error">Cannot find location!</string>
+    <string name="secret_location_loading">Secret location loading</string>
+    <string name="secret_location_received">Choose a location to go to</string>
+    <string name="secret_location_failed">Failed to get secret location</string>
+
+<!--    shared preferences-->
+    <string name="preference_file_key">com.groundspeak.rove.PREFERENCE_FILE_KEY</string>
+    <string name="preference_has_saved_destination_key">HAS_SAVED_DESTINATION</string>
+    <string name="preference_saved_lat_key">SAVED_LAT</string>
+    <string name="preference_saved_long_key">SAVED_LONG</string>
+    <string name="preference_saved_radius_key">SAVED_RADIUS</string>
+    <string name="preference_saved_message_key">SAVED_MESSAGE</string>
+
+</resources>

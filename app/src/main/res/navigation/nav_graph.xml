@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph"
+    app:startDestination="@id/primerFragment">
+    <fragment
+        android:id="@+id/primerFragment"
+        android:name="com.groundspeak.rove.screens.primer.PrimerFragment"
+        android:label="PrimerFragment"
+        tools:layout="@layout/primer_fragment">
+        <action
+            android:id="@+id/action_primerFragment_to_navigateFragment"
+            app:destination="@id/navigateFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/navigateFragment"
+        android:name="com.groundspeak.rove.screens.navigate.NavigateFragment"
+        android:label="NavigateFragment"
+        tools:layout="@layout/navigate_fragment">
+        <action
+            android:id="@+id/action_navigateFragment_to_destinationFragment"
+            app:destination="@id/destinationFragment" />
+        <action
+            android:id="@+id/action_return_to_beginning"
+            app:popUpTo="@id/primerFragment"/>
+        <argument
+            android:name="secretDestination"
+            app:argType="com.groundspeak.rove.models.Destination" />
+    </fragment>
+    <fragment
+        android:id="@+id/destinationFragment"
+        android:name="com.groundspeak.rove.screens.destination.DestinationFragment"
+        android:label="DestinationFragment"
+        tools:layout="@layout/destination_fragment" >
+        <action
+            android:id="@+id/action_return_to_beginning"
+            app:popUpTo="@id/primerFragment" />
+        <argument
+            android:name="destinationMessage"
+            app:argType="string"
+            android:defaultValue='""' />
+    </fragment>
+</navigation>
