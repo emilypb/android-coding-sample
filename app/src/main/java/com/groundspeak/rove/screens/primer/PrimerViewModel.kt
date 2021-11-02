@@ -1,5 +1,6 @@
 package com.groundspeak.rove.screens.primer
 
+import androidx.annotation.VisibleForTesting
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.groundspeak.rove.models.Destination
@@ -8,7 +9,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class PrimerViewModel : ViewModel() {
+open class PrimerViewModel : ViewModel() {
 
     private lateinit var destinations: List<Destination>
     private val destinationCallback: Callback<List<Destination>> = object:
@@ -35,11 +36,14 @@ class PrimerViewModel : ViewModel() {
         destinationInterface.enqueue(destinationCallback)
     }
 
-    private fun onDestinationsReceived(destinations: List<Destination>) {
+    @VisibleForTesting
+    fun onDestinationsReceived(destinations: List<Destination>) {
         this.destinations = destinations
-        val shuffledDestinations = destinations.shuffled()
-        secretDestination1.postValue(shuffledDestinations.first())
-        secretDestination2.postValue(shuffledDestinations.last())
+        if (destinations.isNotEmpty()) {
+            val shuffledDestinations = destinations.shuffled()
+            secretDestination1.postValue(shuffledDestinations.first())
+            secretDestination2.postValue(shuffledDestinations.last())
+        }
     }
 
     private fun onDestinationCallError(t: Throwable) {

@@ -4,8 +4,6 @@ import android.content.Context
 import android.hardware.*
 import android.location.Location
 import android.view.Surface
-import com.groundspeak.rove.util.Compass.CompassListener
-import com.groundspeak.rove.util.Compass
 import android.view.WindowManager
 
 class Compass(private val context: Context, private val listener: CompassListener) {
@@ -71,18 +69,6 @@ class Compass(private val context: Context, private val listener: CompassListene
 
     companion object {
         private const val LOW_PASS_ALPHA = 0.15f
-
-        /**
-         * Adjusts heading to account for variance between magnetic and polar/"True" north
-         */
-        fun adjustHeadingForDeclination(heading: Float, location: Location?): Float {
-            var declination = 0f
-            if (location != null) {
-                val field = GeomagneticField(location.latitude.toFloat(), location.longitude.toFloat(), location.altitude.toFloat(), System.currentTimeMillis())
-                declination = field.declination
-            }
-            return heading + declination
-        }
 
         private fun lowPass(input: FloatArray, output: FloatArray?): FloatArray {
             if (output == null) return input
